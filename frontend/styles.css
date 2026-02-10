@@ -1,0 +1,393 @@
+/* Agent Provenance Hub - Dark Theme with Green Accents */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0e14;
+    --bg-card: #121820;
+    --accent-green: #39ff14;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --border: #2a2e35;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--accent-green);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--accent-green);
+    text-shadow: 0 0 10px var(--accent-green);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-green);
+}
+
+#hero {
+    text-align: center;
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-card) 100%);
+}
+
+#hero h1 {
+    font-size: 3rem;
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    border: 2px solid var(--accent-green);
+    background: transparent;
+    color: var(--accent-green);
+    transition: all 0.3s;
+}
+
+button.primary {
+    background: var(--accent-green);
+    color: var(--bg-dark);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px var(--accent-green);
+}
+
+#features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 5rem 5%;
+}
+
+.feature {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.feature h3 {
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+}
+
+#agents, #submit, #pricing {
+    padding: 5rem 5%;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--accent-green);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#agent-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.agent-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.agent-card h3 {
+    color: var(--accent-green);
+}
+
+.trust-score {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    background: rgba(57, 255, 20, 0.1);
+    border: 1px solid var(--accent-green);
+    border-radius: 4px;
+    color: var(--accent-green);
+}
+
+#submit-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, textarea {
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    border-radius: 4px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-green);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.notice {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.plan {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.plan.premium {
+    border-color: var(--accent-green);
+    border-width: 2px;
+}
+
+.plan h3 {
+    color: var(--accent-green);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.plan p {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.plan ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.plan ul li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+footer {
+    background: var(--bg-card);
+    padding: 2rem 5%;
+    text-align: center;
+    border-top: 2px solid var(--accent-green);
+    margin-top: 5rem;
+}
+
+footer a {
+    color: var(--accent-green);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Submit section enhancements */
+.submit-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.submit-instructions {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.submit-instructions h3 {
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+}
+
+.submit-instructions ol {
+    margin-left: 1.5rem;
+    line-height: 1.8;
+}
+
+.submit-instructions pre {
+    background: var(--bg-dark);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--border);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.submit-instructions code {
+    color: var(--accent-green);
+    font-family: 'Courier New', monospace;
+}
+
+#submit-form {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+#submit-form label {
+    display: block;
+    color: var(--accent-green);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+#submit-form small {
+    display: block;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.example {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.example p {
+    margin-bottom: 0.5rem;
+}
+
+.example a {
+    color: var(--accent-green);
+    word-break: break-all;
+}
+
+/* Agent card badges */
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.openclaw-badge {
+    background: rgba(57, 255, 20, 0.2);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+/* API documentation */
+.api-docs {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.api-docs h3 {
+    color: var(--accent-green);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.api-docs pre {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    line-height: 1.6;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        margin-left: 1rem;
+    }
+    
+    .submit-container {
+        grid-template-columns: 1fr;
+    }
+}

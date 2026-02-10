@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Provenance Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🧠</span>
+                    <span class="logo-text">Provenance Hub</span>
+                </div>
+                <div class="agent-status">
+                    <span class="status-dot active"></span>
+                    <span class="status-text">Agent Active</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#provenance" class="nav-item" data-section="provenance">
+                    <span class="nav-icon">📜</span>
+                    <span class="nav-text">Provenance Logs</span>
+                    <span class="badge" id="provenance-badge">12</span>
+                </a>
+                <a href="#distillation" class="nav-item" data-section="distillation">
+                    <span class="nav-icon">🔥</span>
+                    <span class="nav-text">Distillation</span>
+                    <span class="badge" id="distillation-badge">3</span>
+                </a>
+                <a href="#social" class="nav-item" data-section="social">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Social Tasks</span>
+                    <span class="badge" id="social-badge">5</span>
+                </a>
+                <a href="#settings" class="nav-item" data-section="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="connection-status">
+                    <span class="conn-indicator" id="conn-indicator"></span>
+                    <span class="conn-text" id="conn-text">Offline (Mock Mode)</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="refresh-btn">🔄 Refresh</button>
+                    <button class="btn btn-primary" id="new-task-btn">+ New Task</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📜</div>
+                        <div class="stat-value" id="stat-provenance">12</div>
+                        <div class="stat-label">Provenance Entries</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="stat-distillation">3</div>
+                        <div class="stat-label">Pending Distillations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💬</div>
+                        <div class="stat-value" id="stat-social">5</div>
+                        <div class="stat-label">Social Tasks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-value" id="stat-memory">847</div>
+                        <div class="stat-label">Memory Fragments</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Recent Activity</h3>
+                            <a href="#provenance" class="view-all">View All →</a>
+                        </div>
+                        <div class="activity-list" id="recent-activity">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3>Pending Distillations</h3>
+                            <a href="#distillation" class="view-all">View All →</a>
+                        </div>
+                        <div class="distillation-list" id="pending-distillations">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Provenance Logs Section -->
+            <section id="provenance-section" class="content-section">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search logs..." id="provenance-search">
+                    </div>
+                    <div class="filter-group">
+                        <select id="type-filter">
+                            <option value="all">All Types</option>
+                            <option value="memory">Memory</option>
+                            <option value="decision">Decision</option>
+                            <option value="action">Action</option>
+                            <option value="learning">Learning</option>
+                        </select>
+                        <select id="time-filter">
+                            <option value="24h">Last 24h</option>
+                            <option value="7d">Last 7 days</option>
+                            <option value="30d">Last 30 days</option>
+                            <option value="all">All time</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="timeline-container" id="provenance-timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Distillation Section -->
+            <section id="distillation-section" class="content-section">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search drafts..." id="distillation-search">
+                    </div>
+                    <div class="filter-group">
+                        <select id="status-filter">
+                            <option value="all">All Status</option>
+                            <option value="draft">Draft</option>
+                            <option value="review">Under Review</option>
+                            <option value="approved">Approved</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="distillation-grid" id="distillation-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Social Tasks Section -->
+            <section id="social-section" class="content-section">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search tasks..." id="social-search">
+                    </div>
+                    <div class="filter-group">
+                        <select id="priority-filter">
+                            <option value="all">All Priorities</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <select id="platform-filter">
+                            <option value="all">All Platforms</option>
+                            <option value="telegram">Telegram</option>
+                            <option value="discord">Discord</option>
+                            <option value="twitter">Twitter/X</option>
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="task-list" id="social-task-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section">
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Database Connection</h3>
+                        <p class="settings-desc">Connect to Supabase for live data sync</p>
+                        
+                        <div class="form-group">
+                            <label>Supabase URL</label>
+                            <input type="url" id="supabase-url" placeholder="https://your-project.supabase.co">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Anon Key</label>
+                            <input type="password" id="supabase-key" placeholder="your-anon-key">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="btn btn-primary" id="connect-btn">Connect</button>
+                            <button class="btn btn-secondary" id="test-btn">Test Connection</button>
+                        </div>
+                        
+                        <div class="connection-info">
+                            <h4>📋 Setup Instructions</h4>
+                            <ol>
+                                <li>Create a Supabase project at <a href="https://supabase.com" target="_blank">supabase.com</a></li>
+                                <li>Create tables: <code>provenance_logs</code>, <code>distillation_drafts</code>, <code>social_tasks</code></li>
+                                <li>Enable Row Level Security (RLS) for security</li>
+                                <li>Copy Project URL and Anon Key from Settings → API</li>
+                                <li>Paste credentials above and click Connect</li>
+                            </ol>
+                            <p class="note">See README.md for detailed SQL schema</p>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Agent Preferences</h3>
+                        
+                        <div class="form-group">
+                            <label>Agent Name</label>
+                            <input type="text" id="agent-name" value="OpenClaw Agent">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Auto-refresh Interval (seconds)</label>
+                            <input type="number" id="refresh-interval" value="30" min="5" max="300">
+                        </div>
+                        
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="notifications" checked>
+                            <label for="notifications">Enable notifications</label>
+                        </div>
+                        
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="dark-mode">
+                            <label for="dark-mode">Dark mode</label>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="save-settings">Save Preferences</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Details</h2>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

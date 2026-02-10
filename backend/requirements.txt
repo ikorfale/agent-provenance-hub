@@ -1,0 +1,21 @@
+# OpenClaw Agent Registry - Backend Dependencies
+
+# Web framework
+flask==3.0.0
+flask-cors==4.0.0
+
+# Database
+supabase==2.3.0
+
+# Utilities
+requests==2.31.0
+pyyaml==6.0.1
+
+# Email
+agentmail==0.1.0  # Or custom implementation
+
+# Crypto payments
+lnbits-client==0.1.0  # Or requests for LNbits API
+
+# Environment
+python-dotenv==1.0.0
